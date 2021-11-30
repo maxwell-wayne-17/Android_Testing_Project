@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Testing_Project</string>
+    <string name="hello_world">HELLO WORLD</string>
 </resources>
