@@ -31,6 +31,8 @@ public class TestObject {
 
     public int getNum(){ return testNum; }
 
+    public void setNum(int num){ testNum = num; }
+
     public void setStr(String str){ testString = str; }
 
     public String getStr(){ return testString; }

@@ -88,6 +88,17 @@ public class ExampleUnitTest {
     }
 
     @Test
+    public void test_testObject_setNum(){
+        TestObject test = new TestObject(0, "Default", false);
+
+        test.setNum(123);
+        int expected = 123;
+        int actual = test.getNum();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void test_testObject_incNum(){
         TestObject test = new TestObject(0, "Default", false);
 

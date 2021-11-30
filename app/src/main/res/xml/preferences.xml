@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Text to display">
+
+        <EditTextPreference
+            app:key="key_str"
+            app:title="Display Text"
+            app:summary="Enter the text you would like displayed."
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Number to display">
+
+<!--        Uses custom class so this widget stores an int (not string) in preferences-->
+        <com.example.testing_project.IntEditTextPreference
+            app:key="key_num"
+            app:title="Display Number"
+            app:summary="Enter the number you would like displayed."
+            android:inputType="numberDecimal"
+            />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

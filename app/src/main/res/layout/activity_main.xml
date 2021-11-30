@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.Testing_Project.AppBarOverlay"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_700"
+            app:layout_constraintTop_toTopOf="@+id/include"
+            app:popupTheme="@style/Theme.Testing_Project.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <TextView
         android:id="@+id/textDisplay"
         android:layout_width="wrap_content"
@@ -27,7 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.691"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:onClick="doIncrement"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/minusButton"
@@ -40,9 +60,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.691"
-        app:srcCompat="@android:drawable/dialog_holo_dark_frame" />
+        app:srcCompat="@android:drawable/dialog_holo_dark_frame"
+        android:onClick="doDecrement"/>
 
-    <EditText
+    <TextView
         android:id="@+id/numDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

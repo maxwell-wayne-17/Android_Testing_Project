@@ -82,7 +82,7 @@ public class ExampleMockTest {
         when(mockContext.getString(R.string.hello_world))
                 .thenReturn(FAKE_STRING);
 
-        return new ClassUnderTest(mockContext, mockSharedPref);
+        return new ClassUnderTest(mockContext);
     }
 
     private ClassUnderTest createBrokenSharedPreferenceAndContext(){
@@ -97,7 +97,7 @@ public class ExampleMockTest {
         when(mockBrokenContext.getString(R.string.hello_world))
                 .thenReturn(FAKE_WRONG_STR);
 
-        return new ClassUnderTest(mockBrokenContext, mockBrokenSharedPref);
+        return new ClassUnderTest(mockBrokenContext);
 
     }
 
@@ -150,17 +150,17 @@ public class ExampleMockTest {
     @Test
     public void saveAndReadValidPreferences(){
         // Save info to SharedPreferences
-        boolean success = workingTestClass.savePreferences(FAKE_PREF_NUM, FAKE_PREF_STR);
+        boolean success = workingTestClass.savePreferences(FAKE_PREF_NUM, FAKE_PREF_STR, mockSharedPref);
 
         assertThat("Checking that savePreferences returns true", success, is(true));
 
         // Read num info from SharedPreferences
-        int actualNum = workingTestClass.getSharedPrefNum();
+        int actualNum = workingTestClass.getSharedPrefNum(mockSharedPref);
         assertThat("Checking that FAKE_PREF_NUM persisted and read correctly",
                 actualNum, is( equalTo(FAKE_PREF_NUM) ));
 
         // Read string info from SharedPreferences
-        String actualStr = workingTestClass.getSharedPrefString();
+        String actualStr = workingTestClass.getSharedPrefString(mockSharedPref);
         assertThat("Checking that FAKE_PREF_STR persisted and read correctly",
                 actualStr, is( equalTo(FAKE_PREF_STR) ));
     }
@@ -169,19 +169,75 @@ public class ExampleMockTest {
     @Test
     public void saveAndReadBrokenPreferences(){
         // Save info to SharedPreferences
-        boolean success = brokenTestClass.savePreferences(FAKE_PREF_NUM, FAKE_PREF_STR);
+        boolean success = brokenTestClass.savePreferences(FAKE_PREF_NUM, FAKE_PREF_STR, mockBrokenSharedPref);
 
         assertThat("Broken sharedPreferences should return false", success, is(false));
 
         // Read num info from SharedPreferences
-        int actualNum = brokenTestClass.getSharedPrefNum();
+        int actualNum = brokenTestClass.getSharedPrefNum(mockBrokenSharedPref);
         assertThat("FAKE_PREF_NUM should not be persisted or read correctly",
                 actualNum, is( not(FAKE_PREF_NUM) ));
 
         // Read string info from SharedPreferences
-        String actualStr = brokenTestClass.getSharedPrefString();
+        String actualStr = brokenTestClass.getSharedPrefString(mockBrokenSharedPref);
         assertThat("FAKE_PREF_STR should not b persisted or read correctly",
                 actualStr, is( not(FAKE_PREF_STR) ));
+    }
+
+    @Test
+    public void saveAndReadNumValidPreferences(){
+        // Save info to SharedPreferences
+        boolean success = workingTestClass.saveNumPref(FAKE_PREF_NUM, mockSharedPref);
+
+        assertThat("Checking that savePreferences returns true", success, is(true));
+
+        // Read num info from SharedPreferences
+        int actualNum = workingTestClass.getSharedPrefNum(mockSharedPref);
+        assertThat("Checking that FAKE_PREF_NUM persisted and read correctly",
+                actualNum, is( equalTo(FAKE_PREF_NUM) ));
+
+    }
+
+    @Test
+    public void saveAndReadNumBrokenPreferences(){
+        // Save info to SharedPreferences
+        boolean success = workingTestClass.saveNumPref(FAKE_PREF_NUM, mockBrokenSharedPref);
+
+        assertThat("Broken sharedPreferences should return false", success, is(false));
+
+        // Read num info from SharedPreferences
+        int actualNum = workingTestClass.getSharedPrefNum(mockBrokenSharedPref);
+        assertThat("FAKE_PREF_NUM should not be persisted or read correctly",
+                actualNum, is( not(FAKE_PREF_NUM) ));
+
+    }
+
+    @Test
+    public void saveAndReadStringValidPreferences(){
+        // Save info to SharedPreferences
+        boolean success = workingTestClass.saveStrPref(FAKE_PREF_STR, mockSharedPref);
+
+        assertThat("Checking that savePreferences returns true", success, is(true));
+
+        // Read num info from SharedPreferences
+        String actualStr = workingTestClass.getSharedPrefString(mockSharedPref);
+        assertThat("Checking that FAKE_PREF_STR persisted and read correctly",
+                actualStr, is( equalTo(FAKE_PREF_STR) ));
+
+    }
+
+    @Test
+    public void saveAndReadStringBrokenPreferences(){
+        // Save info to SharedPreferences
+        boolean success = workingTestClass.saveStrPref(FAKE_PREF_STR, mockBrokenSharedPref);
+
+        assertThat("Broken sharedPreferences should return false", success, is(false));
+
+        // Read num info from SharedPreferences
+        String actualStr = workingTestClass.getSharedPrefString(mockBrokenSharedPref);
+        assertThat("FAKE_PREF_STR should not be persisted or read correctly",
+                actualStr, is( not(FAKE_PREF_STR) ));
+
     }
 
 

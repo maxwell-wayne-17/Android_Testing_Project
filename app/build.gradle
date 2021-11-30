@@ -35,6 +35,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.preference:preference:1.1.1'
     // Needed for JUnit 4 framework
     testImplementation 'junit:junit:4.+'
     testImplementation 'androidx.test:core:1.4.0'

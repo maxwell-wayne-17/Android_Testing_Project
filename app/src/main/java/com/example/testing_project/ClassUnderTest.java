@@ -11,32 +11,40 @@ public class ClassUnderTest {
     static final String KEY_NUM = "key_num";
     static final int DEFAULT_NUM = -1;
     static final String KEY_STR = "key_str";
-    static final String DEFAULT_STR = "Default Str";
+    static final String DEFAULT_STR = "Hello World!";
 
-    // Injected SharedPreferences
-    private final SharedPreferences mySharedPref;
-
-    public ClassUnderTest(Context ctx, SharedPreferences sp){
+    public ClassUnderTest(Context ctx){
         this.ctx = ctx;
-        mySharedPref = sp;
     }
 
     public String getHelloWorldString(){
         return ctx.getString(R.string.hello_world);
     }
 
-    public boolean savePreferences(int num, String str){
+    public boolean savePreferences(int num, String str, SharedPreferences mySharedPref){
         SharedPreferences.Editor editor = mySharedPref.edit();
         editor.putInt(KEY_NUM, num);
         editor.putString(KEY_STR, str);
         return editor.commit();
     }
 
-    public int getSharedPrefNum(){
+    public boolean saveNumPref(int num, SharedPreferences mySharedPref){
+        SharedPreferences.Editor editor = mySharedPref.edit();
+        editor.putInt(KEY_NUM, num);
+        return editor.commit();
+    }
+
+    public boolean saveStrPref(String str, SharedPreferences mySharedPref){
+        SharedPreferences.Editor editor = mySharedPref.edit();
+        editor.putString(KEY_STR, str);
+        return editor.commit();
+    }
+
+    public int getSharedPrefNum(SharedPreferences mySharedPref){
         return mySharedPref.getInt(KEY_NUM, DEFAULT_NUM);
     }
 
-    public String getSharedPrefString(){
+    public String getSharedPrefString(SharedPreferences mySharedPref){
         return mySharedPref.getString(KEY_STR, DEFAULT_STR);
     }
 
