@@ -17,17 +17,17 @@ public class ExampleUnitTest {
 
     ///// Everything above this was added by default with empty project /////
 
-    ///// Test equals method /////
+    ///////// Test equals method /////////
     @Test
     public void test_testObjectDefault_equalsTrue(){
         TestObject one = new TestObject();
         TestObject two = new TestObject();
 
-        boolean expected = true;
         // Test objects equal themselves and each other
         boolean actual = one.equals(two) && two.equals(one) && one.equals(one) && two.equals(two);
 
-        assertEquals(expected, actual);
+        assertTrue(actual);
+        //assertEquals(one, two); //Will also work
     }
 
     @Test
@@ -74,13 +74,94 @@ public class ExampleUnitTest {
         assertFalse(actual);
     }
 
-    //// Test inc/dec methods /////
+    //////// Test getters and setters /////////
+
+    /// Test num getters and setters ///
     @Test
-    public void test_testObject_default_constructor(){
+    public void test_testObject_getNum(){
+        TestObject test = new TestObject(0, "Default", false);
 
-        TestObject explicit = new TestObject(0, "Default", false);
-        TestObject def = new TestObject();
+        int expected = 0;
+        int actual = test.getNum();
 
-
+        assertEquals(expected, actual);
     }
+
+    @Test
+    public void test_testObject_incNum(){
+        TestObject test = new TestObject(0, "Default", false);
+
+        int expected = 1;
+        test.increment();
+        int actual = test.getNum();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void test_testObject_decNum(){
+        TestObject test = new TestObject(0, "Default", false);
+
+        int expected = -1;
+        test.decrement();
+        int actual = test.getNum();
+
+        assertEquals(expected, actual);
+    }
+
+    /// Test string getters and setters
+    @Test
+    public void test_testObject_getStr(){
+        TestObject test = new TestObject(0, "Default", false);
+
+        String expected = "Default";
+        String actual = test.getStr();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void test_testObject_setStr(){
+        TestObject test = new TestObject(0, "Default", false);
+
+        String expected = "New";
+        test.setStr("New");
+        String actual = test.getStr();
+
+        assertEquals(expected, actual);
+    }
+
+    /// Test bool getters and setters ///
+    @Test
+    public void test_testObject_getBoolFalse(){
+        TestObject test = new TestObject(0, "Default", false);
+
+        assertFalse(test.getBool());
+    }
+
+    @Test
+    public void test_testObject_getBoolTrue(){
+        TestObject test = new TestObject(0, "Default", true);
+
+        assertTrue(test.getBool());
+    }
+
+    @Test
+    public void test_testObject_switchBoolTrue(){
+        TestObject test = new TestObject(0, "Default", false);
+        test.switchBool();
+        assertTrue(test.getBool());
+    }
+
+    @Test
+    public void test_testObject_switchBoolFalse(){
+        TestObject test = new TestObject(0, "Default", true);
+        test.switchBool();
+        assertFalse(test.getBool());
+    }
+
+
+
+
+
 }
