@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 // Allow assertThat
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,6 +23,9 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
+// NOTE: Roboelectric not compatible with targetSdkVersion > 29
+import androidx.test.core.app.ApplicationProvider;
+
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleMockTest {
 
@@ -31,6 +36,18 @@ public class ExampleMockTest {
 
     private ClassUnderTest workingTestClass;
     private ClassUnderTest brokenTestClass;
+
+    // Roboelectric artifact Context
+    // "Robolectric executes real Android framework code and fakes of native framework code
+    // on your local JVM or on a real device."
+    //private Context roboelectricCtx = ApplicationProvider.getApplicationContext();
+
+    // Mockito fields
+    @Mock
+    Context mockContext;
+
+    @Mock
+    Context mockBrokenContext;
 
     @Mock
     SharedPreferences mockSharedPref;
@@ -44,11 +61,6 @@ public class ExampleMockTest {
     @Mock
     SharedPreferences.Editor mockBrokenEditor;
 
-    @Mock
-    Context mockContext;
-
-    @Mock
-    Context mockBrokenContext;
 
     private ClassUnderTest createMockSharedPreferenceAndContext(){
         // Mocking reading the SharedPreferences as if mockSharedPref is written correctly
@@ -98,6 +110,20 @@ public class ExampleMockTest {
         brokenTestClass = createBrokenSharedPreferenceAndContext();
     }
 
+    // For roboelectric context, more realistic since real context is actually
+    // using the getString() call, opposed to a mocked getString() call
+//    @Test
+//    public void readStringFromContext_LocalizedString() {
+//        // Given a Context object retrieved from Robolectric...
+//        ClassUnderTest myObjectUnderTest = new ClassUnderTest(roboelectricCtx, mockSharedPref);
+//
+//        // ...when the string is returned from the object under test...
+//        String result = myObjectUnderTest.getHelloWorldString();
+//
+//        // ...then the result should be the expected one.
+//        assertThat(result).isEqualTo(FAKE_STRING);
+//    }
+
     @Test
     public void readStringFromWorkingContext_LocalizedString(){
 
@@ -109,7 +135,6 @@ public class ExampleMockTest {
                 result, is(equalTo(FAKE_STRING)));
     }
 
-    // Should fail
     @Test
     public void readStringFromBrokenContext_LocalizedString(){
 
@@ -119,7 +144,7 @@ public class ExampleMockTest {
         // ...then the result should be the expected one.
         assertThat("This is meant to fail, as we should not get hello world string but" +
                         " the wrong string instead",
-                result, is(equalTo(FAKE_STRING)));
+                result, is(not(FAKE_STRING)));
     }
 
     @Test
