@@ -96,10 +96,9 @@ public class ExampleUnitTest {
         TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
         test.setNum(TEST_NUM);
-        int expected = TEST_NUM;
         int actual = test.getNum();
 
-        assertEquals(expected, actual);
+        assertEquals(TEST_NUM, actual);
     }
 
     @Test
@@ -129,10 +128,9 @@ public class ExampleUnitTest {
     public void test_testObject_getStr(){
         TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
-        String expected = DEFAULT_STRING;
         String actual = test.getStr();
 
-        assertEquals(expected, actual);
+        assertEquals(DEFAULT_STRING, actual);
     }
 
     @Test

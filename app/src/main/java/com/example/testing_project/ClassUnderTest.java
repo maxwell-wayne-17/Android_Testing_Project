@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
  */
 public class ClassUnderTest {
 
-    private Context ctx;
+    private final Context ctx;
 
     // Keys for values in SharedPreferences
     static final String KEY_NUM = "key_num";
