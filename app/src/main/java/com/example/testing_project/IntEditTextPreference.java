@@ -6,7 +6,9 @@ import android.util.AttributeSet;
 import androidx.preference.EditTextPreference;
 
 /**
- * Used in preferences.xml to ensure preference value is an int opposed to string
+ * By default, EditTextPreference will save input as a string, even if inputType="decimal" is declared
+ * This class is used in preferences.xml to ensure preference value is saved as an int opposed to string
+ * https://stackoverflow.com/questions/3721358/preferenceactivity-save-value-as-integer/3755608#3755608
  */
 public class IntEditTextPreference extends EditTextPreference {
     public IntEditTextPreference(Context context) {

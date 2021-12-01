@@ -39,8 +39,12 @@ public class ExampleUiTest {
 
     private int beforeNumDisplayed;
 
-    // Sort of a hacky way to get current text in a text view
-    // Not necessarily recommended and usually not required
+    /**
+     * Sort of a hacky way to get current text in a text view
+     * Not necessarily recommended and usually not required,
+     * I need this since the result depends on what was previous in the text view
+     * https://stackoverflow.com/questions/23381459/how-to-get-text-from-textview-using-espresso
+     **/
     private String getText(final Matcher<View> matcher) {
         final String[] stringHolder = { null };
         onView(matcher).perform(new ViewAction() {
@@ -70,7 +74,7 @@ public class ExampleUiTest {
 
     @Before
     public void initNumDisplayed(){
-        // Get original num displayed
+        // Get original num displayed in text view
         beforeNumDisplayed = Integer.parseInt(
                 getText( withId(R.id.numDisplay) )
         );
@@ -89,6 +93,7 @@ public class ExampleUiTest {
         onView(withId(R.id.addButton))
                 .perform(click());
         Log.d(TAG, "num after click = " + getText( withId(R.id.numDisplay)) );
+
         // Compare new value in text view
         onView(withId(R.id.numDisplay))
                 .check(matches(ViewMatchers.withText(numAfter)));
@@ -101,7 +106,7 @@ public class ExampleUiTest {
         // Expected value in text view after increment
         String numAfter = Integer.toString(beforeNumDisplayed - 1);
 
-        // Simulate click increment button
+        // Simulate click decrement button
         onView(withId(R.id.minusButton))
                 .perform(click());
 

@@ -17,6 +17,10 @@ public class ExampleUnitTest {
 
     ///// Everything above this was added by default with empty project /////
 
+    private final static int DEFAULT_NUM = 0;
+    private final static int TEST_NUM = 123;
+    private final static String DEFAULT_STRING = "DEFAULT";
+
     ///////// Test equals method /////////
     @Test
     public void test_testObjectDefault_equalsTrue(){
@@ -79,7 +83,7 @@ public class ExampleUnitTest {
     /// Test num getters and setters ///
     @Test
     public void test_testObject_getNum(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
         int expected = 0;
         int actual = test.getNum();
@@ -89,10 +93,10 @@ public class ExampleUnitTest {
 
     @Test
     public void test_testObject_setNum(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
-        test.setNum(123);
-        int expected = 123;
+        test.setNum(TEST_NUM);
+        int expected = TEST_NUM;
         int actual = test.getNum();
 
         assertEquals(expected, actual);
@@ -100,7 +104,7 @@ public class ExampleUnitTest {
 
     @Test
     public void test_testObject_incNum(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
         int expected = 1;
         test.increment();
@@ -111,7 +115,7 @@ public class ExampleUnitTest {
 
     @Test
     public void test_testObject_decNum(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
         int expected = -1;
         test.decrement();
@@ -123,9 +127,9 @@ public class ExampleUnitTest {
     /// Test string getters and setters
     @Test
     public void test_testObject_getStr(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
-        String expected = "Default";
+        String expected = DEFAULT_STRING;
         String actual = test.getStr();
 
         assertEquals(expected, actual);
@@ -133,7 +137,7 @@ public class ExampleUnitTest {
 
     @Test
     public void test_testObject_setStr(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
         String expected = "New";
         test.setStr("New");
@@ -145,28 +149,28 @@ public class ExampleUnitTest {
     /// Test bool getters and setters ///
     @Test
     public void test_testObject_getBoolFalse(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
 
         assertFalse(test.getBool());
     }
 
     @Test
     public void test_testObject_getBoolTrue(){
-        TestObject test = new TestObject(0, "Default", true);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, true);
 
         assertTrue(test.getBool());
     }
 
     @Test
     public void test_testObject_switchBoolTrue(){
-        TestObject test = new TestObject(0, "Default", false);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, false);
         test.switchBool();
         assertTrue(test.getBool());
     }
 
     @Test
     public void test_testObject_switchBoolFalse(){
-        TestObject test = new TestObject(0, "Default", true);
+        TestObject test = new TestObject(DEFAULT_NUM, DEFAULT_STRING, true);
         test.switchBool();
         assertFalse(test.getBool());
     }
