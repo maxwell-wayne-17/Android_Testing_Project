@@ -3,6 +3,9 @@ package com.example.testing_project;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Shared preferences helper class used to demonstrate testing with mock objects in ExampleMockTest
+ */
 public class ClassUnderTest {
 
     private Context ctx;
@@ -17,6 +20,7 @@ public class ClassUnderTest {
         this.ctx = ctx;
     }
 
+    // Gets string from resources in context
     public String getHelloWorldString(){
         return ctx.getString(R.string.hello_world);
     }

@@ -17,11 +17,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "FINDME_MAIN";
+
     private TestObject testObj;
     private ClassUnderTest prefHelper;
-
-    private FloatingActionButton addButton;
-    private FloatingActionButton decButton;
 
     private TextView tv;
     private TextView numDisplay;
@@ -35,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Set widgets
-        addButton = findViewById(R.id.addButton);
-        decButton = findViewById(R.id.minusButton);
         tv = findViewById(R.id.textDisplay);
         numDisplay = findViewById(R.id.numDisplay);
 
@@ -61,9 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 setPrefValues();
             };
         }
-        else{
-            setPrefValues();
-        }
+        setPrefValues();
         myPreferences.registerOnSharedPreferenceChangeListener(listener);
 
 
@@ -92,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Log.d("MAIN_ACT", "launching settings");
             Intent myIntent = new Intent(this, SettingsActivity.class);
             startActivity(myIntent);
         }
@@ -104,11 +98,13 @@ public class MainActivity extends AppCompatActivity {
         testObj.increment();
         prefHelper.saveNumPref(testObj.getNum(), myPreferences);
         numDisplay.setText( Integer.toString(testObj.getNum()) );
+        Log.d(TAG, "doIncrement: numDisplay.getText() = " + numDisplay.getText());
     }
 
     public void doDecrement(View view) {
         testObj.decrement();
         prefHelper.saveNumPref(testObj.getNum(), myPreferences);
         numDisplay.setText( Integer.toString(testObj.getNum()) );
+        Log.d(TAG, "doDecrement: numDisplay.getText() = " + numDisplay.getText());
     }
 }

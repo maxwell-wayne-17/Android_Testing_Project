@@ -2,6 +2,10 @@ package com.example.testing_project;
 
 import java.util.Objects;
 
+/**
+ * Simple class that essentailly just holds some data used to demonstrate basic java JUnit4 tests in
+ * ExampleUnitTest
+ */
 public class TestObject {
 
     // Constants
