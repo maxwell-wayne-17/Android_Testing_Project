@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple_700"
+            android:background="@color/red_500"
             app:layout_constraintTop_toTopOf="@+id/include"
             app:popupTheme="@style/Theme.Testing_Project.PopupOverlay">
 
